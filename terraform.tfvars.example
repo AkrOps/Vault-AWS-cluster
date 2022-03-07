@@ -1,0 +1,10 @@
+#------------------------------------------------
+# Provide the ssh key pair name (required)
+#------------------------------------------------
+ssh_key_name = "user@host"
+
+#------------------------------------------------
+# Modify the region to use different AWS region
+#------------------------------------------------
+aws_region = "us-west-1"
+aws_zone = "us-west-1a"
