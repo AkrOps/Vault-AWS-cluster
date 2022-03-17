@@ -112,7 +112,7 @@ storage "raft" {
 
   retry_join {
     auto_join_scheme = "http"
-    auto_join = "provider=aws addr_type=public_v4 tag_key=Vault_cluster tag_value=raft-1 region=${aws_region}"
+    auto_join = "provider=aws addr_type=public_v4 tag_key=Vault_cluster tag_value=${cluster_name} region=${aws_region}"
   }
 }
 listener "tcp" {

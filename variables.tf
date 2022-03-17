@@ -23,3 +23,9 @@ variable "ssh_key_name" {
   type        = string
   description = "SSH key pair name in AWS"
 }
+
+variable "cluster_name" {
+  type        = string
+  description = "Cluster name. Added as the Vault_cluster tag value for every node to auto-join."
+  default     = "raft-1"
+}

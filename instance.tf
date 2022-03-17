@@ -39,14 +39,15 @@ resource "aws_instance" "vault" {
 
   tags = {
     Name = "vault-server-${random_pet.env.id}"
-    Vault_cluster = "raft-test-1"
+    Vault_cluster = var.cluster_name
   }
 
   user_data = templatefile("${path.module}/userdata.tftpl", {
-    kms_key    = aws_kms_key.vault.id,
-    vault_url  = var.vault_url,
-    aws_region = var.aws_region,
-    count = count.index
+    kms_key      = aws_kms_key.vault.id,
+    vault_url    = var.vault_url,
+    aws_region   = var.aws_region,
+    count        = count.index
+    cluster_name = var.cluster_name
   })
 }
 
