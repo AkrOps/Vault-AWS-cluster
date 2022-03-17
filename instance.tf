@@ -25,8 +25,8 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "vault" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
-  count         = 3
-  subnet_id     = aws_subnet.public_subnet[count.index % 3].id
+  count         = var.node_count
+  subnet_id     = var.subnet_ids[count.index % 3]
   key_name      = var.ssh_key_name
 
   security_groups = [
@@ -55,7 +55,7 @@ resource "aws_instance" "vault" {
 resource "aws_security_group" "vault" {
   name = "vault-server-${random_pet.env.id}"
   description = "vault access"
-  vpc_id = aws_vpc.vpc.id
+  vpc_id = var.vpc_id
 
   tags = {
     Name = "vault-server-${random_pet.env.id}"
