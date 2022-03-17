@@ -25,9 +25,10 @@ resource "aws_internet_gateway" "gw" {
 }
 
 resource "aws_subnet" "public_subnet" {
+  count                   = 3
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = var.vpc_cidr
-  availability_zone       = var.aws_zone
+  cidr_block              = var.subnet_cidrs[count.index]
+  availability_zone       = "${var.aws_region}${local.AZs[count.index % 3]}"
   map_public_ip_on_launch = true
 
   tags = {
@@ -49,6 +50,7 @@ resource "aws_route_table" "route" {
 }
 
 resource "aws_route_table_association" "route" {
-  subnet_id      = aws_subnet.public_subnet.id
+  count          = 3
+  subnet_id      = aws_subnet.public_subnet[count.index].id
   route_table_id = aws_route_table.route.id
 }

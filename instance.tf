@@ -26,7 +26,7 @@ resource "aws_instance" "vault" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
   count         = 3
-  subnet_id     = aws_subnet.public_subnet.id
+  subnet_id     = aws_subnet.public_subnet[count.index % 3].id
   key_name      = var.ssh_key_name
 
   security_groups = [
