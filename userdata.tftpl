@@ -143,3 +143,6 @@ EOF
 
 systemctl enable vault
 systemctl start vault
+
+vault -autocomplete-install
+runuser -l ubuntu -c 'vault -autocomplete-install'
