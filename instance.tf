@@ -28,6 +28,7 @@ resource "aws_instance" "vault" {
   count         = var.node_count
   subnet_id     = var.subnet_ids[count.index % 3]
   key_name      = var.ssh_key_name
+  private_ip    = var.private_ips[count.index % 3]
 
   security_groups = [
     aws_security_group.vault.id,

@@ -34,3 +34,19 @@ variable "node_count" {
   description = "The number of server nodes in the Vault cluster. Default and recommended is 3."
   default = 3
 }
+
+variable "private_ips" {
+  type = list
+  description = <<EOF
+    The private IP addresses to be assigned to the nodes.
+    There must be a single IP for each node, i.e., private_ips length must match node_count.
+    Keep in mind that nodes will be distributed evenly across a, b and c subnets.
+    The IP assigned to each instance must be within that subnet's CIDR block.
+    Also remember that the TLS certificate used for that node must have a matching IP SAN.
+  EOF
+
+  validation {
+    condition     = can([for ip in var.private_ips : regex("^(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}$", ip)])
+    error_message = "Err: All IPs must be valid."
+  }
+}
