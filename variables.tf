@@ -3,6 +3,11 @@ variable "aws_region" {
   default = "eu-central-1"
 }
 
+variable "name_prefix" {
+  type        = string
+  description = "Prefix for tagging and naming AWS resources"
+}
+
 variable "vault_url" {
   type    = string
   default = "https://releases.hashicorp.com/vault/1.9.3/vault_1.9.3_linux_amd64.zip"
