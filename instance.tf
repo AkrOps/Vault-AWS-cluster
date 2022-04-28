@@ -43,12 +43,12 @@ resource "aws_instance" "vault" {
     Vault_cluster = var.cluster_name
   }
 
-  user_data = templatefile("${path.module}/userdata.tftpl", {
-    kms_key      = aws_kms_key.vault.id,
-    vault_url    = var.vault_url,
-    aws_region   = var.aws_region,
-    count        = count.index
-    cluster_name = var.cluster_name
+  user_data = templatefile("${path.module}/user_data.sh.tpl", {
+    vault_version  = var.vault_version
+    tls_secret_arn = var.tls_secret_arn
+    region         = var.aws_region
+    cluster_name   = var.cluster_name
+    kms_key_id     = aws_kms_key.vault.id
   })
 }
 
