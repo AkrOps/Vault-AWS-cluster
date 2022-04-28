@@ -24,7 +24,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "vault" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+  instance_type = var.instance_type
   count         = var.node_count
   subnet_id     = var.subnet_ids[count.index % 3]
   key_name      = var.ssh_key_name

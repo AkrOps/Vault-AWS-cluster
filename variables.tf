@@ -18,6 +18,12 @@ variable "subnet_ids" {
   description = "A list of 3 subnet IDs in a VPC. Vault cluster nodes will be spread evenly among them."
 }
 
+variable "instance_type" {
+  type        = string
+  default     = "t3.micro" # Something like a m5.xlarge is recommended, cutting costs by default
+  description = "EC2 instance type"
+}
+
 variable "ssh_key_name" {
   type        = string
   default     = null
