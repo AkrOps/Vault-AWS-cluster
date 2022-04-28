@@ -20,7 +20,8 @@ variable "subnet_ids" {
 
 variable "ssh_key_name" {
   type        = string
-  description = "SSH key pair name in AWS in order to provide initial ssh access to the cluster nodes."
+  default     = null
+  description = "(Optional) key pair to use for SSH access to instance"
 }
 
 variable "cluster_name" {
