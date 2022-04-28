@@ -62,3 +62,8 @@ variable "private_ips" {
     error_message = "Err: All IPs must be valid."
   }
 }
+
+variable "tls_secret_arn" {
+  type        = string
+  description = "Secrets manager ARN where TLS cert info is stored"
+}
