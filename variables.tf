@@ -67,3 +67,9 @@ variable "tls_secret_arn" {
   type        = string
   description = "Secrets manager ARN where TLS cert info is stored"
 }
+
+variable "seal_kms_key_arn" {
+  type        = string
+  description = "(Optional but recommended) User-provided Vault auto-unseal KMS key ARN. A new one will be generated if none is provided."
+  default     = null
+}

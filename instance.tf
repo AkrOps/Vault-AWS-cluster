@@ -1,9 +1,10 @@
 resource "aws_kms_key" "vault" {
+  count                   = var.seal_kms_key_arn != null ? 0 : 1
   description             = "Vault unseal key"
   deletion_window_in_days = 10
 
   tags = {
-    Name = "vault-server-${random_pet.env.id}"
+    Name = "${var.name_prefix}-${random_pet.env.id}"
   }
 }
 
@@ -48,7 +49,7 @@ resource "aws_instance" "vault" {
     tls_secret_arn = var.tls_secret_arn
     region         = var.aws_region
     cluster_name   = var.cluster_name
-    kms_key_id     = aws_kms_key.vault.id
+    kms_key_id     = local.seal_kms_key_arn
   })
 }
 
