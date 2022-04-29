@@ -26,6 +26,11 @@ resource "aws_instance" "vault" {
     cluster_name   = var.cluster_name
     kms_key_id     = local.seal_kms_key_arn
   })
+
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
 }
 
 
