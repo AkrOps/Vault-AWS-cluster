@@ -79,3 +79,9 @@ variable "ami_id" {
   description = "(Optional) User-provided AMI ID to use with Vault instances. If you provide this value, please ensure it will work with the default userdata script (assumes latest version of Ubuntu LTS). Otherwise, please provide your own userdata script using the userdata_path variable."
   default     = null
 }
+
+variable "vault_version" {
+  type        = string
+  default     = "1.10.2"
+  description = "Vault version"
+}
