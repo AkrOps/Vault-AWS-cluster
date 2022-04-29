@@ -13,6 +13,7 @@ resource "random_pet" "env" {
 
 locals {
   AZs = ["a", "b", "c"]
+  ami_id = var.ami_id != null ? var.ami_id : data.aws_ami.ubuntu.id
   seal_kms_key_arn = var.seal_kms_key_arn != null ? var.seal_kms_key_arn : aws_kms_key.vault[0].arn
 }
 

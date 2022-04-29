@@ -73,3 +73,9 @@ variable "seal_kms_key_arn" {
   description = "(Optional but recommended) User-provided Vault auto-unseal KMS key ARN. A new one will be generated if none is provided."
   default     = null
 }
+
+variable "ami_id" {
+  type        = string
+  description = "(Optional) User-provided AMI ID to use with Vault instances. If you provide this value, please ensure it will work with the default userdata script (assumes latest version of Ubuntu LTS). Otherwise, please provide your own userdata script using the userdata_path variable."
+  default     = null
+}

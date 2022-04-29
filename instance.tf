@@ -1,5 +1,5 @@
 resource "aws_instance" "vault" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = local.ami_id
   instance_type = var.instance_type
   count         = var.node_count
   subnet_id     = var.subnet_ids[count.index % 3]
