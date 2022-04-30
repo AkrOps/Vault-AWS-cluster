@@ -62,6 +62,27 @@ data "aws_iam_policy_document" "auto_unseal" {
   }
 }
 
+resource "aws_iam_role_policy" "tls_secret" {
+  name   = "${var.name_prefix}-${random_pet.env.id}-tls-secret"
+  role   = aws_iam_role.instance_role.id
+  policy = data.aws_iam_policy_document.tls_secret.json
+}
+
+data "aws_iam_policy_document" "tls_secret" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "kms:DescribeKey",
+      "kms:Decrypt",
+    ]
+
+    resources = [
+      var.tls_secret_kms_key_arn,
+    ]
+  }
+}
+
 resource "aws_iam_role_policy" "session_manager" {
   name   = "${var.name_prefix}-${random_pet.env.id}-ssm"
   role   = aws_iam_role.instance_role.id

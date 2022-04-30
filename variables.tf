@@ -75,6 +75,12 @@ variable "seal_kms_key_arn" {
   default     = null
 }
 
+variable "tls_secret_kms_key_arn" {
+  type        = string
+  description = "(Optional but recommended, defaults to seal_kms_key_arn) ARN of the KMS key used for encrypting the TLS-data secret under Secrets Manager."
+  default     = null
+}
+
 variable "ami_id" {
   type        = string
   description = "(Optional) User-provided AMI ID to use with Vault instances. If you provide this value, please ensure it will work with the default userdata script (assumes latest version of Ubuntu LTS). Otherwise, please provide your own userdata script using the userdata_path variable."
