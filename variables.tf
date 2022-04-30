@@ -112,3 +112,9 @@ variable "instance_egress_cidr_blocks" {
   type        = list
   default     = ["0.0.0.0/0"]
 }
+
+variable "ingress_ssh_cidrs" {
+  type        = list(string)
+  description = "(Optional) List of CIDR blocks to permit for SSH to Vault nodes"
+  default     = null
+}
