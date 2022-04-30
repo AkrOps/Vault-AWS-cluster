@@ -3,8 +3,9 @@ resource "aws_security_group" "vault" {
   vpc_id = var.vpc_id
 
   tags = merge(
-    var.common_tags,
-    Name = "${var.name_prefix}-${random_pet.env.id}"
+    var.common_tags, {
+      Name = "${var.name_prefix}-${random_pet.env.id}"
+    }
   )
 }
 
