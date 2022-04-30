@@ -3,7 +3,8 @@ resource "aws_kms_key" "vault" {
   description             = "Vault auto-unseal key"
   deletion_window_in_days = 10
 
-  tags = {
+  tags = merge(
+    var.common_tags,
     Name = "${var.name_prefix}-${random_pet.env.id}"
-  }
+  )
 }

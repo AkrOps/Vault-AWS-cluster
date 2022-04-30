@@ -3,6 +3,12 @@ variable "aws_region" {
   default = "eu-central-1"
 }
 
+variable "common_tags" {
+  type        = map(string)
+  description = "(Optional) Map of common tags for all taggable AWS resources."
+  default     = {}
+}
+
 variable "name_prefix" {
   type        = string
   description = "Prefix for tagging and naming AWS resources"
@@ -84,4 +90,30 @@ variable "vault_version" {
   type        = string
   default     = "1.10.2"
   description = "Vault version"
+}
+
+variable "alb_sg_id" {
+  type        = string
+  default     = null
+  description = "(Optional) Security Group ID of the cluster ALB"
+}
+
+variable "instance_egress_from_port" {
+  type        = string
+  default     = null
+}
+
+variable "instance_egress_to_port" {
+  type        = string
+  default     = null
+}
+
+variable "instance_egress_protocol" {
+  type        = string
+  default     = null
+}
+
+variable "instance_egress_cidr_blocks" {
+  type        = string
+  default     = null
 }

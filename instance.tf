@@ -14,10 +14,11 @@ resource "aws_instance" "vault" {
   ebs_optimized               = false
   iam_instance_profile        = aws_iam_instance_profile.vault-server.id
 
-  tags = {
-    Name = "vault-server-${random_pet.env.id}"
+  tags = merge(
+    var.common_tags,
+    Name = "${var.name_prefix}-${random_pet.env.id}",
     Vault_cluster = var.cluster_name
-  }
+  )
 
   user_data = templatefile("${path.module}/user_data.sh.tpl", {
     vault_version  = var.vault_version
