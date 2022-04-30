@@ -83,7 +83,7 @@ variable "ami_id" {
 
 variable "vault_version" {
   type        = string
-  default     = "1.10.2"
+  default     = "1.10.2-1"
   description = "Vault version"
 }
 
