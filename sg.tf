@@ -30,7 +30,7 @@ resource "aws_security_group_rule" "vault_internal_raft" {
 }
 
 resource "aws_security_group_rule" "alb_inbound" {
-  count                    = var.lb_sg_id != "null" ? 1 : 0
+  count                    = var.alb_sg_id != "null" ? 1 : 0
   description              = "Allow load balancer to reach Vault nodes on port 8200"
   security_group_id        = aws_security_group.vault.id
   type                     = "ingress"

@@ -57,7 +57,7 @@ data "aws_iam_policy_document" "auto_unseal" {
     ]
 
     resources = [
-      var.kms_key_arn,
+      local.seal_kms_key_arn,
     ]
   }
 }

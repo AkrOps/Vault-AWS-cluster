@@ -12,7 +12,7 @@ resource "aws_instance" "vault" {
 
   associate_public_ip_address = true
   ebs_optimized               = false
-  iam_instance_profile        = aws_iam_instance_profile.vault-server.id
+  iam_instance_profile        = aws_iam_instance_profile.vault.id
 
   tags = merge(
     var.common_tags, {
