@@ -94,21 +94,21 @@ variable "alb_sg_id" {
 }
 
 variable "instance_egress_from_port" {
-  type        = string
-  default     = null
+  type        = number
+  default     = 0
 }
 
 variable "instance_egress_to_port" {
-  type        = string
-  default     = null
+  type        = number
+  default     = 0
 }
 
 variable "instance_egress_protocol" {
   type        = string
-  default     = null
+  default     = "-1"
 }
 
 variable "instance_egress_cidr_blocks" {
-  type        = string
-  default     = null
+  type        = list
+  default     = ["0.0.0.0/0"]
 }

@@ -54,8 +54,8 @@ resource "aws_security_group_rule" "vault_outbound" {
   description       = "Allow Vault nodes to send outbound traffic"
   security_group_id = aws_security_group.vault.id
   type              = "egress"
-  from_port         = local.instance_egress_from_port
-  to_port           = local.instance_egress_to_port
-  protocol          = local.instance_egress_protocol
-  cidr_blocks       = local.instance_egress_cidr_blocks
+  from_port         = var.instance_egress_from_port
+  to_port           = var.instance_egress_to_port
+  protocol          = var.instance_egress_protocol
+  cidr_blocks       = var.instance_egress_cidr_blocks
 }

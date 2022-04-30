@@ -15,12 +15,6 @@ locals {
   AZs = ["a", "b", "c"]
   ami_id = var.ami_id != null ? var.ami_id : data.aws_ami.ubuntu.id
   seal_kms_key_arn = var.seal_kms_key_arn != null ? var.seal_kms_key_arn : aws_kms_key.vault[0].arn
-
-  # Instance egress security group rule
-  instance_egress_from_port   = var.instance_egress_from_port != null ? var.instance_egress_from_port : 0
-  instance_egress_to_port     = var.instance_egress_to_port != null ? var.instance_egress_to_port : 0
-  instance_egress_protocol    = var.instance_egress_protocol != null ? var.instance_egress_protocol : "-1"
-  instance_egress_cidr_blocks = var.instance_egress_cidrs != null ? var.instance_egress_cidrs : ["0.0.0.0/0"]
 }
 
 # Default / fallback AMI
