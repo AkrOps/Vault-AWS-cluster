@@ -91,3 +91,6 @@ cat <<PROFILE | sudo tee /etc/profile.d/vault.sh
 export VAULT_ADDR="https://127.0.0.1:8200"
 export VAULT_CACERT="/opt/vault/tls/vault-ca.pem"
 PROFILE
+
+# Install Vault CLI autocomplete for ubuntu user
+runuser -l ubuntu -c 'vault -autocomplete-install'
