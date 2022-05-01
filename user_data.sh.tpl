@@ -38,8 +38,8 @@ jq -r .vault_ca <<< "$secret_result" | base64 -d > /opt/vault/tls/vault-ca.pem
 
 jq -r .vault_pk <<< "$secret_result" | base64 -d > /opt/vault/tls/vault-key.pem
 
-# Transform CA cert from PEM to DER and add to trusted root CAs
-openssl x509 -outform der -in /opt/vault/tls/vault-ca.pem -out /usr/local/share/ca-certificates/vault-ca.crt
+# Add CA cert to trusted root CAs
+cp /opt/vault/tls/vault-ca.pem /usr/local/share/ca-certificates/vault-ca.crt
 update-ca-certificates
 
 cat << EOF > /etc/vault.d/vault.hcl
