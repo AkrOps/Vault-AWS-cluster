@@ -6,7 +6,7 @@ resource "aws_instance" "vault" {
   key_name      = var.ssh_key_name
   private_ip    = var.private_ips[count.index % 3]
 
-  security_groups = [
+  vpc_security_group_ids = [
     aws_security_group.vault.id,
   ]
 
