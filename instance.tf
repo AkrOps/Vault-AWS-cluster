@@ -16,7 +16,7 @@ resource "aws_instance" "vault" {
 
   tags = merge(
     var.common_tags, {
-      Name = "${var.name_prefix}-${random_pet.env.id}",
+      Name          = "${var.name_prefix}-${random_pet.env.id}",
       Vault_cluster = var.cluster_name
     }
   )

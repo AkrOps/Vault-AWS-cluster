@@ -1,6 +1,6 @@
 resource "aws_iam_instance_profile" "vault" {
   name = "${var.name_prefix}-${random_pet.env.id}"
-  role        = aws_iam_role.instance_role.name
+  role = aws_iam_role.instance_role.name
 }
 
 resource "aws_iam_role" "instance_role" {

@@ -20,7 +20,7 @@ variable "vpc_id" {
 }
 
 variable "subnet_ids" {
-  type        = list
+  type        = list(any)
   description = "A list of 3 subnet IDs in a VPC. Vault cluster nodes will be spread evenly among them."
 }
 
@@ -43,13 +43,13 @@ variable "cluster_name" {
 }
 
 variable "node_count" {
-  type = number
+  type        = number
   description = "The number of server nodes in the Vault cluster. Default and recommended is 3."
-  default = 3
+  default     = 3
 }
 
 variable "private_ips" {
-  type = list
+  type        = list(any)
   description = <<EOF
     The private IP addresses to be assigned to the nodes.
     There must be a single IP for each node, i.e., private_ips length must match node_count.
@@ -100,23 +100,23 @@ variable "alb_sg_id" {
 }
 
 variable "instance_egress_from_port" {
-  type        = number
-  default     = 0
+  type    = number
+  default = 0
 }
 
 variable "instance_egress_to_port" {
-  type        = number
-  default     = 0
+  type    = number
+  default = 0
 }
 
 variable "instance_egress_protocol" {
-  type        = string
-  default     = "-1"
+  type    = string
+  default = "-1"
 }
 
 variable "instance_egress_cidr_blocks" {
-  type        = list
-  default     = ["0.0.0.0/0"]
+  type    = list(any)
+  default = ["0.0.0.0/0"]
 }
 
 variable "ingress_ssh_cidrs" {
